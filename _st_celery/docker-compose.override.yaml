@@ -1,0 +1,14 @@
+services:
+    app:
+        volumes:
+            - .:/app
+        command: streamlit run --server.port $PORT --server.runOnSave true app.py
+        ports:
+            - $PORT:$PORT
+    worker:
+        volumes:
+            - .:/app
+        command: watchmedo auto-restart -d . -p '*.py' -- celery --app=worker.app worker
+    flower:
+        ports:
+            - $FLOWER_PORT:$FLOWER_PORT

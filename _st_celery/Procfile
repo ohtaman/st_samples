@@ -1,0 +1,2 @@
+web: streamlit run --server.headless true --server.port $PORT app.py
+worker: celery --app=worker.app worker
