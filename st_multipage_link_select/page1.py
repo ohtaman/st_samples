@@ -1,4 +1,4 @@
 import streamlit as st
 
 def render():
-    st.write('page1')
+    st.markdown('## This is page1')
