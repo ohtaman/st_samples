@@ -9,12 +9,11 @@ SNAPSHOT_PATH = pathlib.Path('snapshots')
 
 
 def display(a, b):
-    st.markdown('$$y = a\sin(x) + b\cos(x)$$')
+    st.markdown(f'$$y = {a}\sin(x) + {b}\cos(x)$$')
     x = np.arange(-2, 2, 0.1)
     y = a*np.sin(x) + b*np.cos(x)
     df = pd.DataFrame({'x': x, 'y': y})
     df = df.set_index('x')
-    st.write(df)
     st.line_chart(df)
 
 
@@ -35,12 +34,14 @@ def get_data(snapshot_id):
         return pickle.load(i_)
 
 
-def save_data(snapshot_id, data):
+def save_data(data):
+    snapshot_id = get_snapshot_id()
     if not SNAPSHOT_PATH.exists():
         SNAPSHOT_PATH.mkdir(parents=True)
     path = SNAPSHOT_PATH.joinpath(f'{snapshot_id}.pkl')
     with open(path, 'wb') as o_:
         pickle.dump(data, o_)
+    return snapshot_id
 
 
 def get_snapshot_id():
@@ -57,14 +58,14 @@ def main():
 
     with st.sidebar:
         snapshot_slot = st.empty()
-        snapshot_id = snapshot_slot.selectbox('snapshots', ['new'] + get_snapshots())
+        snapshot_id = snapshot_slot.selectbox('choose snapshots', ['new'] + get_snapshots())
+        is_new = snapshot_id == 'new'
         st.markdown('---')
-        if snapshot_id == 'new':
+        if is_new:
             a = st.number_input('a', -1., 1., 0.1)
             b = st.number_input('b', -1., 1., 0.9)
             if st.button('take snapshot.'):
-                snapshot_id = get_snapshot_id()
-                save_data(snapshot_id, (a, b))
+                snapshot_id = save_data((a, b))
                 st.info(f'snapshot id: {snapshot_id}')
                 # Update selectbox
                 snapshot_slot.selectbox('snapshots', ['new'] + get_snapshots())
@@ -73,7 +74,6 @@ def main():
             st.write(f'a = {a}')
             st.write(f'b = {b}')
 
-    st.write((a, b))
     display(a, b)
 
 
