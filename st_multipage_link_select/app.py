@@ -19,6 +19,7 @@ def main():
     page_names = list(pages.keys())
     
     page_name = get_page_param()
+    st.write(page_name)
     # See. https://github.com/streamlit/streamlit/issues/3635
     if page_name in pages and 'page' not in st.session_state:
         st.session_state['page'] = page_name
