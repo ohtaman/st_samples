@@ -23,7 +23,7 @@ def main():
         st.session_state['page'] = page
     
     with st.sidebar:
-        page = st.selectbox('select page', pages.keys(), index=list(pages.values()).index(page), key='page')
+        page = st.selectbox('select page', pages.keys(), index=0, key='page')
         st.experimental_set_query_params(page=page)
         
     pages[page].render()
