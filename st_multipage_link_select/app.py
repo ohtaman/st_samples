@@ -16,15 +16,15 @@ def main():
         'page1': page1,
         'page2': page2
     }
-    page = get_page_param()
-    st.write(page)
+    page_names = list(pages.keys())
     
+    page_name = get_page_param()
     # See. https://github.com/streamlit/streamlit/issues/3635
-    if page in pages.keys() and 'page' not in st.session_state:
-        st.session_state['page'] = page
+    if page_name in pages and 'page' not in st.session_state:
+        st.session_state['page'] = page_name
     
     with st.sidebar:
-        page = st.selectbox('select page', pages.keys(), index=0, key='page')
+        page = st.selectbox('select page', page_names, key='page')
         st.experimental_set_query_params(page=page)
         
     pages[page].render()
