@@ -17,6 +17,7 @@ def main():
         'page2': page2
     }
     page = get_page_param()
+    st.write(page)
     
     # See. https://github.com/streamlit/streamlit/issues/3635
     if page in pages.keys() and 'page' not in st.session_state:
