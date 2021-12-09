@@ -15,15 +15,15 @@ if not ARTIFACT_PATH.exists():
 app = celery.Celery('celery')
 if 'REDIS_URL' in os.environ:
     app.conf.update(
-        BROKER_URL=os.environ['REDIS_URL'],
-        CELERY_RESULT_BACKEND=os.environ['REDIS_URL']
+        broker_url=os.environ['REDIS_URL'],
+        result_backend=os.environ['REDIS_URL']
     )
 
 @app.task(name='add', bind=True)
 def add(self: celery.Task, x, y):
     start = datetime.datetime.now()
     result = x + y
-    time.sleep(20)
+    time.sleep(10)
     end = datetime.datetime.now()
     if self.request.id is not None:
         filepath = ARTIFACT_PATH.joinpath(f'{self.request.id}.pkl')

@@ -1,36 +1,7 @@
 version: "3"
 
 services:
-    app:
-        build: .
-        image: $APP_IMAGE:$GITSHA
-        ports:
-            - $PORT
-        command: streamlit run --server.headless true --server.port $PORT app.py
-        depends_on:
-            - redis
-        deploy:
-            replicas: 1
-        labels:
-            kompose.service.type: "LoadBalancer"
-        env_file: .env
-    worker:
-        build: .
-        image: $APP_IMAGE:$GITSHA
-        command: celery --app=worker.app worker
-        depends_on:
-            - redis
-        deploy:
-            replicas: 2
-        env_file: .env
-    flower:
-        image: mher/flower
-        ports:
-            - $FLOWER_PORT
-        depends_on:
-            - redis
-        deploy:
-            replicas: 1
-        env_file: .env
     redis:
         image: redis
+        ports:
+            - 6379:6379

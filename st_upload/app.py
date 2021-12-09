@@ -18,8 +18,10 @@ def main():
             file,
             delimiter=delimiter
         )
-        st.write(data)
-
+        columns = st.multiselect(data.columns)
+        filtered_data = data[columns]
+        st.write(filtered_data)
+        st.download_button('ダウンロード', filtered_data)
 
 if __name__ == '__main__':
     main()

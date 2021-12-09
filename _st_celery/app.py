@@ -9,6 +9,8 @@ import worker
 def get_results():
     results = []
     for file in worker.ARTIFACT_PATH.iterdir():
+        if file.name.startswith('.'): # 隠しファイルの除く
+            continue
         with open(file, 'rb') as i_:
             results.append(pickle.load(i_))
     return results
@@ -27,8 +29,10 @@ def main():
 
     results = get_results()
     if results:
-        df = pd.DataFrame(results).set_index('id')
-        st.write(df.sort_values('start', ascending=False))
+        df = pd.DataFrame.from_records(results)
+        st.write(df)
+        # df = pd.DataFrame(results).set_index('id')
+        # st.write(df.sort_values('start', ascending=False))
     st.button('reload')
 
 
