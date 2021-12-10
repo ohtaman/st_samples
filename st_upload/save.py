@@ -4,7 +4,7 @@ import streamlit as st
 from PIL import Image
 
 
-IMG_PATH = 'imgs'
+IMG_PATH = 'st_upload/imgs'
 
 
 def list_imgs():
