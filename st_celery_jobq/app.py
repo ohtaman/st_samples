@@ -31,8 +31,6 @@ def main():
     if results:
         df = pd.DataFrame.from_records(results)
         st.write(df)
-        # df = pd.DataFrame(results).set_index('id')
-        # st.write(df.sort_values('start', ascending=False))
     st.button('reload')
 
 

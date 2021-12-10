@@ -1,13 +1,12 @@
 [tool.poetry]
-name = "st_upload"
+name = "st_multipage_link_select"
 version = "0.1.0"
 description = ""
-authors = ["ohtaman <ohtamans@gmail.com"]
+authors = ["ohtaman <ohtamans@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-streamlit = "^1.1.0"
-streamlit-aggrid = "^0.2.2"
+streamlit = "^1.2.0"
 
 [tool.poetry.dev-dependencies]
 

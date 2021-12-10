@@ -8,9 +8,11 @@ def show_result(job_id):
         job_id=job_id,
         name='result'
     )
+    st.write(job_result)
     st.markdown(f'## {job_id}')
     st.markdown(f'a: {job_result["a"]}')
     st.markdown(f'b: {job_result["b"]}')
+    st.markdown(f'a + b: {job_result["sum"]}')
 
 
 def main():
@@ -27,6 +29,7 @@ def main():
             job_id = st.selectbox('job', job_queue.get_jobs())
         elif task_type == 'put a new job':
             with st.form(key='job_form'):
+                st.markdown('和を計算します')
                 a = st.number_input('a', -1., 1., 0.1)
                 b = st.number_input('b', -1., 1., 0.9)
                 submit = st.form_submit_button('submit')
