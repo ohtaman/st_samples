@@ -17,14 +17,13 @@ class Worker(threading.Thread):
             time.sleep(1)
             self.counter += 1
 
-
 def main():
     if 'worker' not in st.session_state:
         st.session_state.worker = None
     worker = st.session_state.worker
 
     with st.sidebar:
-        if st.button('Create worker', disabled=worker is not None):
+        if st.button('Start worker', disabled=worker is not None):
             worker = st.session_state.worker = Worker(daemon=True)
             worker.start()
             
@@ -34,15 +33,15 @@ def main():
             worker = st.session_state.worker = None
             st.experimental_rerun()
     
-        if st.button('reload', disabled=worker is None):
-            pass # just reload
-
-    
     if worker is None:
         st.markdown('No worker')
     else:
-        st.markdown(f'counter: {worker.counter}')
-        
+        st.markdown(f'worker: {worker.getName()}')
+        placeholder = st.empty()
+        while worker.is_alive():
+            placeholder.markdown(f'counter: {worker.counter}')
+            time.sleep(1)
+
 
 if __name__ == '__main__':
     main()
