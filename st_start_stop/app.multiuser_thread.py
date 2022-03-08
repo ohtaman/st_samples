@@ -64,6 +64,10 @@ def main():
             placeholder.markdown(f'counter: {worker.counter}')
             time.sleep(1)
 
+    # 別セッションでの更新に追従するために、定期的にrerunする
+    time.sleep(1)
+    st.experimental_rerun()
+
 
 if __name__ == '__main__':
     main()
