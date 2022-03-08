@@ -5,7 +5,7 @@ description = ""
 authors = ["ohtaman <ohtamans@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.9"
 streamlit = "^1.5.1"
 watchdog = "^2.1.6"
 
