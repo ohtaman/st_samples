@@ -7,7 +7,7 @@ authors = ["ohtaman <ohtamans@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.10"
 importlib-resources = "^5.7.0"
-streamlit-sortables = {url = "https://test-files.pythonhosted.org/packages/c6/f7/ed7081fff09b73d6a94577a85071e779fd878d396d0ecb2e710c676c695f/streamlit_sortables-0.1.1rc0-py3-none-any.whl"}
+streamlit-sortables = "^0.1.2"
 
 [tool.poetry.dev-dependencies]
 

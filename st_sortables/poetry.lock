@@ -1008,7 +1008,7 @@ watchdog = {version = "*", markers = "platform_system != \"Darwin\""}
 
 [[package]]
 name = "streamlit-sortables"
-version = "0.1.1rc0"
+version = "0.1.2"
 description = "A Streamlit component to provide sortable list."
 category = "main"
 optional = false
@@ -1017,9 +1017,6 @@ python-versions = ">=3.8,<4.0"
 [package.dependencies]
 streamlit = ">=1.0.0"
 
-[package.source]
-type = "url"
-url = "https://test-files.pythonhosted.org/packages/c6/f7/ed7081fff09b73d6a94577a85071e779fd878d396d0ecb2e710c676c695f/streamlit_sortables-0.1.1rc0-py3-none-any.whl"
 [[package]]
 name = "terminado"
 version = "0.13.3"
@@ -1191,7 +1188,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "eed07b7d2d397637509871e9da385b0490bf99e5eba8ecff3e1fcd227bea32fa"
+content-hash = "59f3fdd89e8687ccab5a948ccedcdcca6a88e69adc8e194187d9b796f2330467"
 
 [metadata.files]
 altair = [
@@ -1872,7 +1869,10 @@ streamlit = [
     {file = "streamlit-1.8.1-py2.py3-none-any.whl", hash = "sha256:24d19c420d760c88eafc3f9508cbbd77ddab4a99a3a3b4db06f7741531f120a5"},
     {file = "streamlit-1.8.1.tar.gz", hash = "sha256:507c84439996c6ffed150a2bdd1352b46acc8a476a1012e73241f7cc2fda3056"},
 ]
-streamlit-sortables = []
+streamlit-sortables = [
+    {file = "streamlit-sortables-0.1.2.tar.gz", hash = "sha256:2f725dcf2710fe9bb10fa0036821cb1ac4989915d52117b6963c3a74d21226c4"},
+    {file = "streamlit_sortables-0.1.2-py3-none-any.whl", hash = "sha256:7c1f95b3bd0ae35d648d7a875b7b41baa52a029a877a34b4937746f473bba801"},
+]
 terminado = [
     {file = "terminado-0.13.3-py3-none-any.whl", hash = "sha256:874d4ea3183536c1782d13c7c91342ef0cf4e5ee1d53633029cbc972c8760bd8"},
     {file = "terminado-0.13.3.tar.gz", hash = "sha256:94d1cfab63525993f7d5c9b469a50a18d0cdf39435b59785715539dd41e36c0d"},
