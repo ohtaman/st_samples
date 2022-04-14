@@ -5,6 +5,7 @@ import streamlit as st
 
 st.title('streamlit-sortables')
 
+st.markdown('See [the github repository](https://github.com/ohtaman/streamlit-sortables) for more information.')
 
 st.markdown('Sort items in a single container.')
 with st.echo():
