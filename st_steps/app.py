@@ -52,7 +52,6 @@ def get_page_index():
 
 def main():
     page_index = get_page_index()
-    st.write(str(page_index))
     
     with st.sidebar:
         st.selectbox(
