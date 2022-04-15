@@ -45,13 +45,14 @@ def set_page(page_index):
 def get_page_index():
     query = st.experimental_get_query_params().get('page')
     if query is not None and query[0].isdecimal():
-        return int(query[0])
+        return min(int(query[0]), len(PAGES) - 1)
     else:
         return 0
 
 
 def main():
     page_index = get_page_index()
+    st.write(str(page_index))
     
     with st.sidebar:
         st.selectbox(
