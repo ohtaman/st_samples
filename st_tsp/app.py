@@ -144,7 +144,7 @@ class Deck:
 def get_optimal_route(nodes: Iterable[Node], edges: Iterable[Node]) -> list[Node]:
     if len(nodes) <= 2:
         return nodes
-    
+
     model = pulp.LpProblem(name='tsp')
     nodes = pd.Series(nodes)
     edges = pd.Series(edges)
@@ -243,6 +243,11 @@ def load_data(cost_type: str='duration') -> tuple[pd.Series, pd.Series]:
 def select_nodes(nodes: Iterable[Node], default: bool=True) -> Iterable[Node]:
     selected = []
     with st.expander('訪問対象を選択'):
+        # Defaults
+        for node in nodes:
+            if f'select-{node.name}' not in st.session_state:
+                st.session_state[f'select-{node.name}'] = default
+
         col1, col2 = st.columns(2)
         # Select all
         if col1.button('全てを選択'):
@@ -251,10 +256,11 @@ def select_nodes(nodes: Iterable[Node], default: bool=True) -> Iterable[Node]:
         # Clear all
         if col2.button('全てを解除'):
             for node in nodes:
-                st.session_state[f'select-{node.name}'] = False
+                if f'select-{node.name}' in st.session_state:
+                    st.session_state[f'select-{node.name}'] = False
         # Select
         for node in nodes:
-            if st.checkbox(node.name, key=f'select-{node.name}', value=default):
+            if st.checkbox(node.name, key=f'select-{node.name}'):
                 selected.append(node)
     return selected
 
