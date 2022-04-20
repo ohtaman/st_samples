@@ -240,13 +240,9 @@ def load_data(cost_type: str='duration') -> tuple[pd.Series, pd.Series]:
     return nodes, edges
 
 
-def select_nodes(nodes: Iterable[Node]) -> Iterable[Node]:
+def select_nodes(nodes: Iterable[Node], default: bool=True) -> Iterable[Node]:
     selected = []
     with st.expander('訪問対象を選択'):
-        # Default value
-        for node in nodes:
-            if f'select-{node.name}' not in st.session_state:
-                st.session_state[f'select-{node.name}'] = True
         col1, col2 = st.columns(2)
         # Select all
         if col1.button('全てを選択'):
@@ -258,7 +254,7 @@ def select_nodes(nodes: Iterable[Node]) -> Iterable[Node]:
                 st.session_state[f'select-{node.name}'] = False
         # Select
         for node in nodes:
-            if st.checkbox(node.name, key=f'select-{node.name}'):
+            if st.checkbox(node.name, key=f'select-{node.name}', value=default):
                 selected.append(node)
     return selected
 
