@@ -243,11 +243,6 @@ def load_data(cost_type: str='duration') -> tuple[pd.Series, pd.Series]:
 def select_nodes(nodes: Iterable[Node], default: bool=True) -> Iterable[Node]:
     selected = []
     with st.expander('訪問対象を選択'):
-        # Defaults
-        for node in nodes:
-            if f'select-{node.name}' not in st.session_state:
-                st.session_state[f'select-{node.name}'] = default
-
         col1, col2 = st.columns(2)
         # Select all
         if col1.button('全てを選択'):
