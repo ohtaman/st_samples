@@ -325,7 +325,7 @@ def main():
         edge = edges[edge_key]
         total_cost += edge.cost
         deck.add_path_layer(edge.steps)
-    st.write(f'Total Cost (訪問時間): {datetime.timedelta(seconds=int(total_cost))}')
+    st.write(f'### Total Cost (所要時間): {datetime.timedelta(seconds=int(total_cost))}')
 
     deck.add_icon_layer(selected_nodes)
     deck.show(center=Deck.get_center(nodes), zoom=Deck.get_zoom(nodes))
