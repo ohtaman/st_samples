@@ -3,6 +3,7 @@ from dataclasses import dataclass
 import datetime
 import json
 import math
+import pathlib
 from typing import Iterable
 
 import pulp
@@ -208,9 +209,14 @@ def initialize_app():
         st.session_state['routes'] = defaultdict(dict)
 
 
+@st.cache
+def _read_csv(fname: str) -> pd.DataFrame:
+    data_dir = pathlib.Path(__file__).parent.joinpath('data')
+    return pd.read_csv(data_dir.joinpath(fname))
+
 def load_data(cost_type: str='duration') -> tuple[pd.Series, pd.Series]:
-    ward_offices = pd.read_csv('data/tokyo_ward_offices.csv')
-    cost_and_path = pd.read_csv('data/distance_duration_and_steps.csv')
+    ward_offices = _read_csv('tokyo_ward_offices.csv')
+    cost_and_path = _read_csv('distance_duration_and_steps.csv')
 
     nodes = ward_offices.apply(
         lambda x: Node(
@@ -292,15 +298,8 @@ def main():
         if strategy == '抽出順をそのまま利用':
             route = selected_nodes
         if strategy == '数理最適化の結果を利用':
-            # if st.button('最適化'):
             route = get_optimal_route(selected_nodes, edges)
             set_current_route(route)
-            # else:
-            #     route = get_current_route()
-            #     if len(route) != len(selected_nodes):
-            #         st.write(route)
-            #         st.write(selected_nodes)
-            #         route = []
         elif strategy == '保存済みのルートから選択':
             route_name = st.selectbox(
                 'ルートを選択',

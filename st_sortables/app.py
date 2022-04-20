@@ -1,7 +1,6 @@
 import streamlit as st
 from streamlit_sortables import sort_items
 
-import streamlit as st
 
 st.title('streamlit-sortables')
 
