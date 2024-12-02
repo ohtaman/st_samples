@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "st_upload"
+name = "st_aggrid_example"
 version = "0.1.0"
 description = ""
 authors = ["ohtaman <ohtamans@gmail.com"]
@@ -8,6 +8,7 @@ authors = ["ohtaman <ohtamans@gmail.com"]
 python = "^3.9"
 streamlit = "^1.1.0"
 streamlit-aggrid = "^0.2.2"
+altair = "4"
 
 [tool.poetry.dev-dependencies]
 
